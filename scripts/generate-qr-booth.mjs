@@ -5,7 +5,9 @@ import { PNG } from 'pngjs'
 
 const ROOT_DIR = process.cwd()
 const INPUT_CSV = path.join(ROOT_DIR, 'dataset-tenant.csv')
-const OUTPUT_DIR = path.join(ROOT_DIR, 'public', 'qr_booth')
+const OUTPUT_DIR = process.env.QR_OUTPUT_DIR
+  ? path.resolve(process.env.QR_OUTPUT_DIR)
+  : path.join(ROOT_DIR, 'public', 'qr_booth')
 
 const WIDTH = 1240
 const HEIGHT = 1754
@@ -253,7 +255,7 @@ async function run() {
   }
 
   await fs.writeFile(path.join(OUTPUT_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2), 'utf8')
-  console.log(`Generated ${manifest.length} PNG QR booth cards in public/qr_booth`)
+  console.log(`Generated ${manifest.length} PNG QR booth cards in ${OUTPUT_DIR}`)
 }
 
 run().catch((error) => {
