@@ -38,3 +38,5 @@ __screenshots__/
 .env
 .env.local
 public/qr_booth
+# clasp (scriptId lokal)
+apps-script/.clasp.json

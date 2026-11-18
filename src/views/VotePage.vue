@@ -211,7 +211,7 @@ async function handleVote() {
 
   try {
     const response = await fetch(
-      'https://script.google.com/macros/s/AKfycbydP9UMS9WwxrlaMxurlLbrh0gYu6sk-lGRPywHXzNdhoV5A4AwUnYWiW8OmXnM4SsV/exec',
+      'https://script.google.com/macros/s/AKfycbwrsVAW1SURuYXYotrNuaym3_0zEjxxp-dSujs4m5iES_pluu_tjXa55CNDPhgG7uvZ/exec',
       {
         method: 'POST',
         mode: 'cors',

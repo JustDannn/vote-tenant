@@ -1,11 +1,9 @@
 /**
  * Backend vote The Market Day 2026 (TUKS).
  *
- * Cara pakai:
- * 1. Buat Google Sheet baru -> Extensions -> Apps Script, tempel file ini.
- * 2. Jalankan fungsi `setup` sekali (izinkan akses) untuk membuat sheet Votes & Rekap.
- * 3. Deploy -> New deployment -> Web app
- *    Execute as: Me, Who has access: Anyone -> salin URL /exec-nya.
+ * Deploy dengan clasp dari folder ini (lihat appsscript.json untuk setting web app):
+ *   clasp create --type sheets --title "Vote TMD 2026 TUKS" && clasp push -f && clasp deploy
+ * Lalu buka URL /exec sekali (login sebagai pemilik) untuk izin akses & membuat sheet.
  *
  * Request dari VotePage.vue: POST body JSON { googleId, email, name, tenantId }
  * Response: { success: boolean, message: string }
@@ -111,6 +109,8 @@ function doPost(e) {
 }
 
 function doGet() {
+  // Buka URL /exec sekali setelah deploy untuk membuat sheet Votes & Rekap
+  if (!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(REKAP_SHEET)) setup()
   return json({ success: true, message: 'Vote backend aktif.' })
 }
 
